@@ -7,7 +7,7 @@
             <h1>{{ product.product_name }}</h1>
             <h3>{{ product.selling_price }}</h3>
 
-            <input type="text" class="text-center col-1 mr-2 p-1">
+            <input type="text" v-model.number="quantity" class="text-center col-1 mr-2 p-1">
             <button class="btn btn-primary" @click="addToCart()">Add To Cart</button>
 
             <p class="mt-4">Product Code: {{product.product_code}} & Root: {{product.root}} & Buying Price: {{ product.buying_price }} & Product Quantity: {{ product.product_quantity }}</p>
@@ -18,6 +18,11 @@
 <script>
 export default {
     props: ['id'],
+    data(){
+        return{
+            quantity: 1
+        }
+    },
 
     computed:{
         product(){
@@ -28,7 +33,7 @@ export default {
         addToCart(){
             this.$store.dispatch('addProductToCart', {
                 product: this.product,
-                quantity: 1
+                quantity: this.quantity
             });
         }
     },

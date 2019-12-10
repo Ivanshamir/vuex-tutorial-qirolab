@@ -1,20 +1,22 @@
-import axios from 'axios';
+import Product from '../apis/Product';
 
 export const getProducts = ({commit}) => {
-    axios.get('http://localhost:8000/api/product')
-        .then(response => {
-            commit('SET_PRODUCTS', response.data);
-        })
-        .catch( error => {
-            console.log(error)
-        })
+    Product.all().then(response => {
+        commit('SET_PRODUCTS', response.data);
+    })
+    .catch( error => {
+        console.log(error)
+    })
+    // axios.get('http://localhost:8000/api/product')
+        
 }
 
 export const getProduct = ({commit}, productId) => {
-    axios.get(`http://localhost:8000/api/product/${productId}`)
-        .then(response => {
-            commit('SET_PRODUCT', response.data);
-        })
+    Product.show(productId).then(response => {
+        commit('SET_PRODUCT', response.data);
+    })
+    // axios.get(`http://localhost:8000/api/product/${productId}`)
+        
 }
 
 export const addProductToCart = ({commit}, {product, quantity}) => {    
