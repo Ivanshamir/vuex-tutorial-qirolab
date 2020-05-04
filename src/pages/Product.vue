@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapState,mapActions } from "vuex";
 export default {
     props: ['id'],
     data(){
@@ -23,23 +24,21 @@ export default {
             quantity: 1
         }
     },
-
     computed:{
-        product(){
-            return this.$store.state.product;
-        }
+        ...mapState(['product'])
     },
      methods:{
+         ...mapActions(['addProductToCart', 'getProduct']),
+
         addToCart(){
-            this.$store.dispatch('addProductToCart', {
+            this.addProductToCart({
                 product: this.product,
                 quantity: this.quantity
             });
         }
     },
-
     mounted(){
-        this.$store.dispatch('getProduct', this.id)
+        this.getProduct( this.id)
     }
 }
 </script>

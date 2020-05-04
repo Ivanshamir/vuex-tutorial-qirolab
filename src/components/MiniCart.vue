@@ -24,22 +24,21 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
     computed:{
-        cart(){
-            return this.$store.state.cart;
-        },
-        cartTotalPrice(){
-            return this.$store.getters.cartTotalPrice;
-        }
+        ...mapState(['cart']),
+
+        ...mapGetters(['cartTotalPrice'])
     },
     methods:{
-        removeProductFromCart(product){
-            this.$store.dispatch('removeProductFromCart', product);
-        },
-        clearCartItems(){
-            this.$store.dispatch('clearCartItems');
-        }
+        // removeProductFromCart(product){
+        //     this.$store.dispatch('removeProductFromCart', product);
+        // },
+        ...mapActions(['removeProductFromCart', 'clearCartItems'])
+        // clearCartItems(){
+        //     this.$store.dispatch('clearCartItems');
+        // }
     }
 }
 </script>

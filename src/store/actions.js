@@ -19,6 +19,12 @@ export const getProduct = ({commit}, productId) => {
         
 }
 
+// export const getCartItems = ({ commit }) => {
+//     Cart.all().then(response => {
+//         commit('SET_CART', response.data);
+//     })
+// }
+
 export const addProductToCart = ({commit}, {product, quantity}) => {    
     commit('ADD_TO_CART', {product, quantity});
 }
